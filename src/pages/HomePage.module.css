@@ -1,0 +1,18 @@
+.homePage {
+	display: grid;
+	grid-template-rows: 1fr 2fr 1fr;
+	grid-gap: 100px;
+	overflow-x: hidden;
+
+}
+
+.covers {
+	display: flex;
+	flex-wrap: nowrap;
+	gap:40px;
+}
+
+.largeCovers {
+	display: flex;
+
+}	
