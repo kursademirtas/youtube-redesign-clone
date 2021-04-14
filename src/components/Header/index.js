@@ -11,9 +11,11 @@ const Header = () => {
 			<Menu/>
 			<Logo />
 			<SearchBar />
-			<Videocam />
-			<Apps />
-			<Notifications />
+			<div className={styles.menu_container}>
+				<Videocam />
+				<Apps />
+				<Notifications />
+			</div>
 			<UserAvatar />
 		</div>
 	)
