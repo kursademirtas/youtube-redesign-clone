@@ -1,28 +1,26 @@
-import React from 'react'
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { Avatar } from "./Styles";
 
-const MenuItem = ({ Logo, text}) => {
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  color: #898989;
+  font-weight: 400;
 
-	const Container = styled.div`
-		display:flex;
-		align-items:center;
-		padding:0.5rem;
-		color:#898989;
-		font-weight:400;
+  p {
+    margin-left: 10px;
+  }
+`;
 
-		p {
-			margin-left:10px;
-		}
-	`
+const MenuItem = ({ Logo, text, avatar }) => {
+  return (
+    <Container>
+     {Logo ? <Logo /> : <Avatar src={avatar} size='32px'/>}
+      <p>{text}</p>
+    </Container>
+  );
+};
 
-
-
-	return (
-		<Container>
-			<Logo />
-			<p>{ text }</p>	
-		</Container>
-	)
-}
-
-export default MenuItem
+export default MenuItem;
