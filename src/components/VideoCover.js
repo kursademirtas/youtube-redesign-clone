@@ -7,6 +7,7 @@ const Cover = styled.div`
   width: ${(props) => props.coverWidth};
   height: ${(props) => props.coverHeight};
   position: relative;
+
 `;
 
 const TimeLabel = styled.span`
@@ -49,9 +50,9 @@ const Text = styled.p`
   font-size: 13px;
 `;
 
-const VideoCover = ({ video, large = false }) => {
-  const coverWidth = large ? "540px" : "200px";
-  const coverHeight = large ? "300px" : "200px";
+const VideoCover = ({ video, medium, large = false }) => {
+  const coverWidth = large ? "540px"  : medium ? '350px' : "200px";
+  const coverHeight = large ? "300px" : medium ? 'auto' : "200px";
 
   const { duration, title, view, time, author, cover, description } = video;
 
