@@ -4,22 +4,28 @@ import VideoPlayer from "../components/VideoPlayer";
 import { useParams } from "react-router";
 import axios from "axios";
 import { NameTitle, Text } from "../components/Styles";
-import { ThumbDown, ThumbUpAlt, Share, Tune } from "@material-ui/icons/";
+import { ThumbDown, ThumbUpAlt, Share } from "@material-ui/icons/";
 import ChannelInfo from "../components/ChannelInfo";
 import NextVideos from "../components/NextVideos";
 
 const PageWrapper = styled.div`
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 3fr auto;
+  padding: 1rem;
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const VideoPageContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  max-width: 1000px;
 `;
 const VideoInfoWrapper = styled.div`
   width: 100%;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,8 +66,8 @@ const VideoPage = () => {
     fetchVideoByID(videoID);
   }, []);
 
-  const { title, description, views, time, author,videos } = videoData;
- 
+  const { title, description, views, time, author, videos } = videoData;
+
   return (
     <PageWrapper>
       <VideoPageContainer>
@@ -85,7 +91,7 @@ const VideoPage = () => {
         </VideoInfoWrapper>
         <ChannelInfo author={author} />
       </VideoPageContainer>
-      <NextVideos videos={videos}/>
+      <NextVideos videos={videos} />
     </PageWrapper>
   );
 };

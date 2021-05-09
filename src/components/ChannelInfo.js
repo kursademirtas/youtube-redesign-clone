@@ -11,20 +11,30 @@ const InfoContainer = styled.div`
 `;
 const InfoBody = styled.div`
   width: 80%;
-  padding:.5rem;
+  padding: 0.5rem;
+`;
+const About = styled.p`
+  font-size: 14px;
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
 `;
 
 const ChannelInfo = ({ author }) => {
   if (!author) return <h2>Loading...</h2>;
 
-  const { name, about,subscribers,profile_picture } = author;
-	console.log(profile_picture);
+  const { name, about, subscribers, profile_picture } = author;
+
   return (
     <InfoContainer>
-      <Avatar size={"60px"} src={`http://localhost:1337${profile_picture.url}`}/>
+      <Avatar
+        size={"60px"}
+        src={`http://localhost:1337${profile_picture.url}`}
+      />
       <InfoBody>
         <NameTitle>{name}</NameTitle>
-        <Text>{about}</Text>
+        <About>{about}</About>
       </InfoBody>
       <SubscribeButton subscribers={subscribers} />
     </InfoContainer>
