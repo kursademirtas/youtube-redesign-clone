@@ -1,8 +1,9 @@
 import React from "react";
-import MenuItem from "../MenuItem";
-import styles from "./SideBar.module.css";
-import { useChannelData } from "../../context/channelContext";
+import MenuItem from "./MenuItem";
+import styled from 'styled-components';
+import { useLocation } from "react-router";
 
+import { useChannelData } from "../context/channelContext";
 import {
   Games,
   Home,
@@ -16,9 +17,20 @@ import {
   MusicNote,
 } from "@material-ui/icons/";
 
+
+const SideBarContainer = styled.aside`
+	padding:1rem;
+	width: 200px;
+	height: 90vh;
+`
+
 const SideBar = () => {
+
+  const {pathname} = useLocation();
   const { channelData } = useChannelData();
 
+  if(pathname.includes('/video/')) return null;
+  
   const menuItems = [
     { logo: Home, text: "Home" },
     { logo: Whatshot, text: "Trending" },
@@ -33,7 +45,7 @@ const SideBar = () => {
   ];
 
   return (
-    <aside className={styles.sideBar}>
+    <SideBarContainer>
       <div>
         {menuItems.map((item, i) => {
           return <MenuItem key={i} Logo={item.logo} text={item.text} />;
@@ -44,7 +56,7 @@ const SideBar = () => {
           return <MenuItem key={channel.id} text={channel.name} avatar={`http://localhost:1337${channel.profile_picture.url}`}/>;
         })}
       </div>
-    </aside>
+    </SideBarContainer>
   );
 };
 
