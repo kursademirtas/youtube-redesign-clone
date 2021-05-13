@@ -4,7 +4,6 @@ export const Row = styled.div`
   display: flex;
   justify-content:space-between;
   align-items:center;
-
 `;
 
 export const Avatar = styled.img`
@@ -27,3 +26,12 @@ export const Text = styled.p`
   line-height: 16px;
   color: #C2C2C2;
 `
+export const Main = styled.div`
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
+  margin-top:80px;
+  overflow:hidden;
+  position:relative;
+`;
