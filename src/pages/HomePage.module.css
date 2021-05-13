@@ -1,18 +1,21 @@
 .homePage {
 	display: grid;
-	grid-template-rows: 1fr 2fr 1fr;
-	grid-gap: 100px;
-	overflow-x: hidden;
+	grid-template-rows: auto;
+	grid-gap: 40px;
+	margin-left: 200px;
 
 }
 
 .covers {
 	display: flex;
 	flex-wrap: nowrap;
-	gap:40px;
 }
 
 .largeCovers {
 	display: flex;
-
 }	
+@media (max-width:768px) {
+	.homePage { 
+		margin-left: 0;
+	}
+}
