@@ -12,6 +12,7 @@ const PageWrapper = styled.div`
   display: grid;
   grid-template-columns: 3fr auto;
   padding: 1rem;
+  margin:0 auto;
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
   }
@@ -64,14 +65,14 @@ const VideoPage = () => {
 
   useEffect(() => {
     fetchVideoByID(videoID);
-  }, []);
+  }, [videoID]);
 
-  const { title, description, views, time, author, videos } = videoData;
-
+  const { title, description, views, time, author, videos, video } = videoData;
+  
   return (
     <PageWrapper>
       <VideoPageContainer>
-        <VideoPlayer />
+        <VideoPlayer video={video}/>
         <NameTitle>{title}</NameTitle>
         <VideoInfoWrapper>
           <Text>{views} views</Text>
