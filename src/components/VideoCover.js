@@ -1,13 +1,18 @@
-import { Description } from "@material-ui/icons";
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import VideoDescription from "./VideoDescription";
+import { Row } from "./Styles";
 
 const Cover = styled.div`
   width: ${(props) => props.coverWidth};
   height: ${(props) => props.coverHeight};
   position: relative;
-
+  margin-left: 2rem;
+  @media (max-width: 640px) {
+    width: 90%;
+    height: 60vw;
+    margin: 1rem auto;
+  }
 `;
 
 const TimeLabel = styled.span`
@@ -18,7 +23,7 @@ const TimeLabel = styled.span`
   height: 24px;
   background: #333333;
   mix-blend-mode: normal;
-  opacity: 0.3;
+  opacity: 0.7;
   border-radius: 12px;
   color: white;
   display: flex;
@@ -32,11 +37,6 @@ const Photo = styled.img`
   border-radius: 14px;
 `;
 
-const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 const Title = styled.h2`
   font-weight: bold;
   font-size: 16px;
@@ -47,25 +47,30 @@ const Title = styled.h2`
 
 const Text = styled.p`
   color: #c2c2c2;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 500;
 `;
 
-const VideoCover = ({ video, medium, large = false }) => {
-  const coverWidth = large ? "540px"  : medium ? '350px' : "200px";
-  const coverHeight = large ? "300px" : medium ? 'auto' : "200px";
+const VideoCover = ({ video, medium, large = false, withOutDescription }) => {
+  const coverWidth = large ? "540px" : medium ? "350px" : "200px";
+  const coverHeight = large ? "300px" : medium ? "auto" : "200px";
 
-  const { duration, title, view, time, author, cover, description } = video;
+  if (!video) return <h2>Loading...</h2>;
+  const { duration, title, view, time, author, cover, description, id } = video;
 
   return (
-    <Cover coverHeight={coverHeight} coverWidth={coverWidth}>
-      <Photo src={`http://localhost:1337${cover.url}`} />
-      <TimeLabel>{`2.10`}</TimeLabel>
-          <Title>{title}</Title>
+    <Link to={{ pathname: `/video/${id}` }}>
+      <Cover coverHeight={coverHeight} coverWidth={coverWidth}>
+        <Photo src={`http://localhost:1337${cover.url}`} />
+        <TimeLabel>{`2.10`}</TimeLabel>
+        {!withOutDescription && (
           <Row>
-            <Text>{view} views</Text>
-            <Text>{author}</Text>
+            <Title>{title}</Title>
+            <Text>{10} views</Text>
           </Row>
-    </Cover>
+        )}
+      </Cover>
+    </Link>
   );
 };
 

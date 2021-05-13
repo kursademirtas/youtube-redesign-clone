@@ -7,12 +7,15 @@ import styled from "styled-components";
 
 const HeaderContainer = styled.div`
   display: flex;
-  width: 90%;
+  width: 100vw;
   margin: 0 auto;
   padding: 1rem 0;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
+  z-index:10;
+  background-color:white;
+  position:fixed;
+  top:0;
 `;
 
 const MenuContainer = styled.div`
@@ -29,7 +32,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <Row>
-        <Menu />
+        {false && <Menu />}
         <Logo />
         <SearchBar />
       </Row>

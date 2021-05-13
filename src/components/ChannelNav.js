@@ -1,8 +1,11 @@
 import styled from "styled-components";
+import { channelMenuItems } from "../lib/menuItems";
+
 
 const Wrapper = styled.ul`
   display: flex;
   height: 50px;
+  width: 100%;
 `;
 const MenuItem = styled.li`
   list-style: none;
@@ -10,41 +13,33 @@ const MenuItem = styled.li`
   font-size: 18px;
   line-height: 23px;
   position: relative;
-  cursor:pointer;
-  transition:all 0.5s;
+  cursor: pointer;
+  transition: all 0.5s;
 
-  ::before{
-	  content:'';
-	  position:absolute;
-	  width:100%;
-	  height:2px;
-	  background-color:red;
-	  bottom:0;
-	  left:0;
-	  opacity:0;
-	  transition:all 0.5s;
-	  transform-origin:left;
+  ::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: red;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transition: all 0.5s;
+    transform-origin: left;
   }
   :hover {
-	  color:red;
+    color: red;
   }
-  :hover::before{
-	  opacity:1;
+  :hover::before {
+    opacity: 1;
   }
 `;
 
 const ChannelNav = () => {
-  const menuItems = [
-    "Home",
-    "Videos",
-    "Playlists",
-    "Channels",
-    "Discussions",
-    "About",
-  ];
   return (
     <Wrapper>
-      {menuItems.map((item) => {
+      {channelMenuItems.map((item) => {
         return <MenuItem>{item}</MenuItem>;
       })}
     </Wrapper>

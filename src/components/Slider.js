@@ -1,4 +1,3 @@
-import { StepLabel } from "@material-ui/core";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Avatar, NameTitle } from "./Styles";
@@ -6,10 +5,15 @@ import { Avatar, NameTitle } from "./Styles";
 export const SliderContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  gap: 40px;
-  transition: all 2s;
-  transform: ${props => props.translateX};
-  padding: 0 4rem;
+  transition: all 1s;
+  transform: ${(props) => props.translateX};
+  padding: 0;
+  @media (max-width: 640px) {
+    flex-direction:column;
+    margin-top:-4rem;
+    padding:0;
+    transform: translateX(0);
+  }
 `;
 
 const Container = styled.div`
@@ -30,12 +34,12 @@ const Button = styled.button`
   color: white;
   border: none;
   margin-left: 10px;
-
+  @media (max-width: 640px) {
+    display:none;
+  }
 `;
 
-const Wrapper = styled.div`
-
-`
+const Wrapper = styled.div``;
 
 const Slider = ({ children, withTitle }) => {
   const [distance, setDistance] = useState(0);
@@ -51,7 +55,7 @@ const Slider = ({ children, withTitle }) => {
   return (
     <div>
       <Container>
-        <Wrapper style={!withTitle && {opacity:0}}>
+        <Wrapper style={!withTitle && { opacity: 0 }}>
           <Avatar />
           <NameTitle>Dollie Blair</NameTitle>
         </Wrapper>
@@ -64,9 +68,10 @@ const Slider = ({ children, withTitle }) => {
             &gt;
           </Button>
         </Wrapper>
-
       </Container>
-      <SliderContainer translateX={`translateX(${distance}px)`}>{children}</SliderContainer>
+      <SliderContainer translateX={`translateX(${distance}px)`}>
+        {children}
+      </SliderContainer>
     </div>
   );
 };
