@@ -1,28 +1,38 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from "./components/Header";
+import { ChannelDataProvider } from "./context/channelContext";
+import ChannelPage from "./pages/ChannelPage";
+
 import SideBar from "./components/SideBar";
 import HomePage from "./pages/HomePage";
-import ChannelPage from "./pages/ChannelPage";
-import { Row } from "./components/Styles";
-import { ChannelDataProvider } from "./context/channelContext";
+import { Main } from "./components/Styles";
 import VideoPage from "./pages/VideoPage";
+import Header from "./components/Header";
+import MobileMenu from "./components/MobileMenu";
+import { HomeVideosProvider } from "./context/homeVideoContext";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <ChannelDataProvider>
-        <Header />
-        <Router>
-          <Row>
+        <HomeVideosProvider>
+          <Router>
+            <Header />
+            <Main>
               <SideBar />
+              <MobileMenu />
               <Switch>
-                <Route path='/' exact component={HomePage} />
-                <Route path='/channel/:channelID' exact component={ChannelPage} />
-                <Route path='/video/:videoID' component={VideoPage}/>
-            </Switch>
-          </Row>
-        </Router>
+                <Route path="/" exact component={HomePage} />
+                <Route
+                  path="/channel/:channelID"
+                  exact
+                  component={ChannelPage}
+                />
+                <Route path="/video/:videoID" component={VideoPage} />
+              </Switch>
+            </Main>
+          </Router>
+        </HomeVideosProvider>
       </ChannelDataProvider>
     </div>
   );
