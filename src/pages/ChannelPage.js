@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { Row } from "../components/Styles";
+
 import UserAvatar from "../components/UserAvatar";
 import SubscribeButton from "../components/SubscribeButton";
 import ChannelNav from "../components/ChannelNav";
@@ -12,7 +12,7 @@ import HighlightedVideoCover from "../components/HighlightedVideoCover";
 
 const Layout = styled.div`
   max-width: calc(100vw - 200px);
-  margin-left: 200px;
+  margin-left: 232px;
 
   @media only screen and (max-width: 1023px) {
     margin-left: 0;
@@ -24,6 +24,13 @@ const Banner = styled.img`
   height: 200px;
   margin: 1rem 0;
 `;
+
+const Row = styled.div`
+  display: flex;
+  padding: 0 2rem;
+  justify-content: space-between;
+`;
+
 const ChannelPage = () => {
   const { channelID } = useParams();
   const [channelData, setChannelData] = useState(null);
@@ -55,14 +62,14 @@ const ChannelPage = () => {
 
   return (
     <Layout>
-      <Banner src={`http://localhost:1337${banner.url}`} alt="" />
+      <Banner src={`http://localhost:1337${banner.url}`} alt={name + 'youtube banner picture'} />
       <Row>
         <UserAvatar
           url={profile_picture.url}
           name={name}
           subscribers={subscribers}
         />
-        <SubscribeButton subscribers={"2k"} />
+        <SubscribeButton subscribers={subscribers} />
       </Row>
       <ChannelNav />
       <HighlightedVideoCover video={highLightVideo} />
