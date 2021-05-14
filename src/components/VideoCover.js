@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import shortNumber from "short-number";
 import styled from "styled-components";
+import toHHMMSS from "../lib/toHHMMSS";
 import { Row } from "./Styles";
 
 const Cover = styled.div`
@@ -17,10 +19,9 @@ const Cover = styled.div`
 
 const TimeLabel = styled.span`
   position: absolute;
-  bottom: 25%;
+  bottom: 3.5rem;
   right: 10px;
-  width: 47px;
-  height: 24px;
+  padding:.5rem;
   background: #333333;
   mix-blend-mode: normal;
   opacity: 0.7;
@@ -53,20 +54,23 @@ const Text = styled.p`
 
 const VideoCover = ({ video, medium, large = false, withOutDescription }) => {
   const coverWidth = large ? "540px" : medium ? "350px" : "200px";
-  const coverHeight = large ? "300px" : medium ? "auto" : "200px";
+  const coverHeight = large ? "300px" : medium ? "300px" : "200px";
 
   if (!video) return <h2>Loading...</h2>;
-  const { duration, title, view, time, author, cover, description, id } = video;
+
+  const { duration, title, views, time, author, cover, description, id } = video;
+
+  const convertedDuration =  toHHMMSS(duration);
 
   return (
     <Link to={{ pathname: `/video/${id}` }}>
       <Cover coverHeight={coverHeight} coverWidth={coverWidth}>
         <Photo src={`http://localhost:1337${cover.url}`} />
-        <TimeLabel>{`2.10`}</TimeLabel>
+        <TimeLabel>{convertedDuration}</TimeLabel>
         {!withOutDescription && (
           <Row>
             <Title>{title}</Title>
-            <Text>{10} views</Text>
+            <Text>{views ? shortNumber(views) : 0} views</Text>
           </Row>
         )}
       </Cover>
