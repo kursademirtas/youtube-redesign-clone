@@ -5,23 +5,23 @@ import styles from "./HomePage.module.css";
 import { useHomeVideos } from "../context/homeVideoContext";
 
 const HomePage = () => {
-  const { homeVideos, recommendVideos } = useHomeVideos();
 
-  console.log(recommendVideos);
+  const { homeVideos, recommendVideos } = useHomeVideos();
   if (!homeVideos) return <h2>Loading...</h2>;
 
   return (
     <div className={styles.homePage}>
-      <Slider>
+      <Slider channelName='Recommended' large >
         {recommendVideos.map((video) => {
-          return <VideoCover large video={video} />;
+          return <VideoCover key={video.id}  video={video} large />;
         })}
       </Slider>
-      {homeVideos.map((category) => {
+      {homeVideos.map((category, i) => {
+        console.log(category.name);
         return (
-          <Slider>
+          <Slider key={i} channelName={category.name} >
             {category.videos.map((video) => {
-              return <VideoCover video={video} />;
+              return <VideoCover key={video.id} video={video} />;
             })}
           </Slider>
         );
