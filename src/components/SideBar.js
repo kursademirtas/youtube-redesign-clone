@@ -5,11 +5,14 @@ import { useLocation } from "react-router";
 import { useChannelData } from "../context/channelContext";
 import { menuItems } from '../lib/menuItems';
 import MenuItem from "./MenuItem";
+import { NameTitle } from "./Styles";
 
 const SideBarContainer = styled.aside`
+
   width: 200px;
-  height: 90vh;
+  height: calc(100vh - 80px);
   position: fixed;
+  padding:1rem;
   z-index: 10;
   background-color: white;
   top: 80px;
@@ -17,7 +20,12 @@ const SideBarContainer = styled.aside`
     display: none;
   }
 `;
-
+const BottomWrapper = styled.div`
+  margin-top: 4rem;
+  h3{
+   padding:1rem;
+  }
+`
 const SideBar = () => {
   const { pathname } = useLocation();
   const { channelData } = useChannelData();
@@ -32,10 +40,11 @@ const SideBar = () => {
           return <MenuItem key={i} Logo={item.logo} text={item.text} />;
         })}
       </div>
-      <div>
+      <BottomWrapper>
+        <h3>Subscriptions</h3>
         {channelData.map((channel) => {
           return (
-            <Link to={{ pathname: `/channel/${channel.id}` }}>
+            <Link key={channel.id} to={{ pathname: `/channel/${channel.id}` }}>
               <MenuItem
                 key={channel.id}
                 text={channel.name}
@@ -44,7 +53,7 @@ const SideBar = () => {
             </Link>
           );
         })}
-      </div>
+      </BottomWrapper>
     </SideBarContainer>
   );
 };
