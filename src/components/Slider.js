@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Avatar, NameTitle } from "./Styles";
 
@@ -9,9 +9,9 @@ export const SliderContainer = styled.div`
   transform: ${(props) => props.translateX};
   padding: 0;
   @media (max-width: 640px) {
-    flex-direction:column;
-    margin-top:-4rem;
-    padding:0;
+    flex-direction: column;
+    margin-top: -4rem;
+    padding: 0;
     transform: translateX(0);
   }
 `;
@@ -30,46 +30,66 @@ const Button = styled.button`
   border-radius: 28px;
   background: #000000;
   mix-blend-mode: normal;
-  opacity: 0.24;
+  opacity: 0.7;
   color: white;
   border: none;
   margin-left: 10px;
+  :disabled {
+    opacity: 0.2;
+  }
   @media (max-width: 640px) {
-    display:none;
+    display: none;
   }
 `;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  @media (max-width: 640px) {
+    display: none;
+  }
+`;
 
-const Slider = ({ children, withTitle }) => {
+const Slider = ({ children, channelName, large }) => {
+  // get video cover count and width a cover after calculate distance limit.
+  const sliderRef = useRef(null);
+  const containerRef = useRef(null);
+  const elementWidth = large ? 540 : 240;
+  const [screenWidth, setScreenWidth] = useState(null);
+  const [elementCount, setElementCount] = useState(0);
+  const limit = elementWidth * elementCount * -1 + (screenWidth - 150);
+
+  useEffect(() => {
+    setElementCount(sliderRef.current.childElementCount);
+    setScreenWidth(containerRef.current.offsetWidth);
+  }, [sliderRef.current]);
+
   const [distance, setDistance] = useState(0);
 
   function next() {
-    setDistance(distance - 240);
+    setDistance(distance - elementWidth);
   }
 
   function prev() {
-    setDistance(distance + 240);
+    setDistance(distance + elementWidth);
   }
 
   return (
     <div>
-      <Container>
-        <Wrapper style={!withTitle && { opacity: 0 }}>
+      <Container ref={containerRef}>
+        <Wrapper>
           <Avatar />
-          <NameTitle>Dollie Blair</NameTitle>
+          <NameTitle>{channelName}</NameTitle>
         </Wrapper>
 
         <Wrapper>
           <Button onClick={prev} disabled={distance >= 0}>
             &lt;
           </Button>
-          <Button onClick={next} disabled={distance <= -800}>
+          <Button onClick={next} disabled={distance <= limit}>
             &gt;
           </Button>
         </Wrapper>
       </Container>
-      <SliderContainer translateX={`translateX(${distance}px)`}>
+      <SliderContainer ref={sliderRef} translateX={`translateX(${distance}px)`}>
         {children}
       </SliderContainer>
     </div>
