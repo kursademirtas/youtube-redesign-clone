@@ -8,11 +8,17 @@ const Container = styled.div`
   padding: 0.5rem;
   color: #898989;
   font-weight: 400;
+  cursor: pointer;
+
+  :hover {
+    background-color: rgba(0, 0, 0, 0.15);
+    color: #000000;
+  }
   p {
     margin-left: 10px;
   }
   @media (max-width: 640px) {
-    flex-direction:column;
+    flex-direction: column;
   }
 `;
 
@@ -26,4 +32,3 @@ const MenuItem = ({ Logo, text, avatar }) => {
 };
 
 export default MenuItem;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
