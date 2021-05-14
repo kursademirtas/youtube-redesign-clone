@@ -1,9 +1,9 @@
 # Todo
 
--Set Homepage videos
+-Add Settings (dark theme)
 -Add Search Functionality
 -Add History Functionality
--Set Numbers 
+-Add Comment Functionality
 
 ## Available Scripts
 
