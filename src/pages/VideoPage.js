@@ -3,16 +3,18 @@ import React, { useEffect, useState } from "react";
 import VideoPlayer from "../components/VideoPlayer";
 import { useParams } from "react-router";
 import axios from "axios";
+import shortNumber from "short-number";
 import { NameTitle, Text } from "../components/Styles";
 import { ThumbDown, ThumbUpAlt, Share } from "@material-ui/icons/";
 import ChannelInfo from "../components/ChannelInfo";
 import NextVideos from "../components/NextVideos";
+import Comments from "../components/Comments";
 
 const PageWrapper = styled.div`
   display: grid;
   grid-template-columns: 3fr auto;
   padding: 1rem;
-  margin:0 auto;
+  margin: 0 auto;
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
   }
@@ -24,18 +26,20 @@ const VideoPageContainer = styled.div`
   flex-direction: column;
   max-width: 1000px;
 `;
+
 const VideoInfoWrapper = styled.div`
   width: 100%;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: lightgray 1px solid;
   padding-bottom: 1rem;
 `;
+
 const ButtonWrapper = styled.div`
   display: flex;
 `;
+
 const Button = styled.button`
   width: 80px;
   height: 40px;
@@ -67,33 +71,47 @@ const VideoPage = () => {
     fetchVideoByID(videoID);
   }, [videoID]);
 
-  const { title, description, views, time, author, videos, video } = videoData;
-  
+  const {
+    title,
+    description,
+    views,
+    time,
+    author,
+    videos,
+    video,
+    likes,
+    comments,
+  } = videoData;
+
   return (
-    <PageWrapper>
-      <VideoPageContainer>
-        <VideoPlayer video={video}/>
-        <NameTitle>{title}</NameTitle>
-        <VideoInfoWrapper>
-          <Text>{views} views</Text>
-          <ButtonWrapper>
-            <Button>
-              <ThumbUpAlt color="primary" />
-              1k
-            </Button>
-            <Button>
-              <ThumbDown color="primary" />
-              23
-            </Button>
-            <Button>
-              <Share color="primary" />
-            </Button>
-          </ButtonWrapper>
-        </VideoInfoWrapper>
-        <ChannelInfo author={author} />
-      </VideoPageContainer>
-      <NextVideos videos={videos} />
-    </PageWrapper>
+    <div>
+      <PageWrapper>
+        <VideoPageContainer>
+          <VideoPlayer video={video} />
+          <NameTitle>{title}</NameTitle>
+          <VideoInfoWrapper>
+            <Text>{views ? shortNumber(views) : 0} views</Text>
+            <ButtonWrapper>
+              <Button>
+                <ThumbUpAlt color="primary" />
+                {likes ? shortNumber(likes) : 0}
+              </Button>
+              <Button>
+                <ThumbDown color="primary" />
+                {shortNumber(Math.floor(Math.random() * likes))}
+              </Button>
+              <Button>
+                <Share color="primary" />
+              </Button>
+            </ButtonWrapper>
+          </VideoInfoWrapper>
+          <ChannelInfo author={author} />
+          { comments && <Comments comments={comments} /> }
+        </VideoPageContainer>
+        <NextVideos videos={videos} />
+      </PageWrapper>
+      
+    </div>
   );
 };
 
