@@ -10,20 +10,28 @@ const Container = styled.div`
   flex-direction: column;
   align-content: center;
   align-items: center;
-  margin:0 auto;
+  margin:-1rem auto;
 `;
 const VideosWrapper = styled.div`
   width:100%;
- 
-
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 `;
 const Row = styled.div`
   width: 100%;
   max-width: 600px;
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  align-items:center;
+  padding:1rem 2rem;
 `;
+
+const Title = styled.h3`
+  text-align:center;
+  margin-left:20px;
+`
 
 const NextVideos = ({ videos }) => {
   const [toggleOn, setToggleOn] = useState(false);
@@ -36,7 +44,7 @@ const NextVideos = ({ videos }) => {
   return (
     <Container>
       <Row>
-        <h2>Next</h2>
+        <Title>Next</Title>
         {toggleOn ? (
           <ToggleOnIcon
             style={{ color: "green" }}
