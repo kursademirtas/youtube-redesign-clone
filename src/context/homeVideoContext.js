@@ -11,6 +11,8 @@ export function HomeVideosProvider({ children }) {
   const [homeVideos, setHomeVideos] = useState([]);
   const recommendVideos = [];
 
+
+  //Generate random index for every category and push array. 
   const setRecommendedVideos = () => {
     homeVideos.map((category) => {
       const limit = category.videos.length;
@@ -19,7 +21,7 @@ export function HomeVideosProvider({ children }) {
     });
   };
 
-  //Search another solution for fetch data.
+  
   const fetchData = async () => {
     await axios
       .get("http://localhost:1337/categories")

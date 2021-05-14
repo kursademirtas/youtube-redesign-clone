@@ -4,9 +4,11 @@ import { Avatar, NameTitle, Text } from './Styles'
 
 
 const Wrapper = styled.div`
-	width:200px;
 	display:flex;
 	justify-content:space-between;
+	div{
+		margin-left:1rem;
+	}
 `
 
 const UserAvatar = ({url,name, subscribers, verified }) => {
@@ -16,8 +18,7 @@ const UserAvatar = ({url,name, subscribers, verified }) => {
 			<div className="">
 			<NameTitle>{name}</NameTitle>
 			<Text>{subscribers} Subscribers</Text>
-			</div>
-			
+			</div>	
 		</Wrapper>
 	)
 }

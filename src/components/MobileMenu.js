@@ -7,6 +7,7 @@ import { mobileMenuItems } from '../lib/menuItems';
 const MenuContainer = styled.div`
   display:flex;
   justify-content:space-around;
+  align-items:center;
   background-color: white;
   width: 100%;
   position: fixed;
