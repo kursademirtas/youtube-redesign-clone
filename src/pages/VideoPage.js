@@ -106,7 +106,7 @@ const VideoPage = () => {
             </ButtonWrapper>
           </VideoInfoWrapper>
           <ChannelInfo author={author} />
-          { comments && <Comments comments={comments} /> }
+          { comments && <Comments comments={comments} id={videoID} fetchVideoByID={fetchVideoByID }/> }
         </VideoPageContainer>
         <NextVideos videos={videos} />
       </PageWrapper>
