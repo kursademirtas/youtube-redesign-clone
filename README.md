@@ -3,7 +3,7 @@
 -Add Settings (dark theme)
 -Add Search Functionality
 -Add History Functionality
--Add Comment Functionality
+-Sort Comments (Two option)
 
 ## Available Scripts
 
