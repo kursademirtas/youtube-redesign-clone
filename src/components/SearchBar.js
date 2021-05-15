@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Search } from "@material-ui/icons/";
 import styled from "styled-components";
+import axios from "axios";
+import { Link, useLocation, useParams } from "react-router-dom";
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-left: 10rem;
+
+  ul {
+    width: fit-content;
+    height: 200px;
+    list-style: none;
+    background: white;
+    padding: 2rem;
+    z-index: 12;
+    position: absolute;
+    overflow-x: scroll;
+    top: 110%;
+
+    li {
+      padding: 0.3rem;
+    }
+  }
+`;
 const SearchBarContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -33,11 +59,56 @@ const SearchBarContainer = styled.div`
 `;
 
 const SearchBar = () => {
+  const { pathname } = useLocation();
+
+  const [el, setEl] = useState(null);
+  const [videos, setVideos] = useState([]);
+
+  const fetchAllVideos = () => {
+    axios.get("http://localhost:1337/videos").then(function (response) {
+      setVideos(
+        response.data.filter((video) => {
+          return video.title.includes(el);
+        })
+      );
+    });
+  };
+
+  useEffect(() => {
+    fetchAllVideos();
+  }, [el]);
+
+  useEffect(() => {
+    setEl("");
+  }, [pathname]);
+
   return (
-    <SearchBarContainer>
-      <input type="text" placeholder="Search" />
-      <Search />
-    </SearchBarContainer>
+    <Wrapper>
+      <SearchBarContainer>
+        <input
+          type="text"
+          placeholder="Search"
+          value={el}
+          onChange={(e) => setEl(e.target.value)}
+        />
+        <Search />
+      </SearchBarContainer>
+      {el && (
+        <ul>
+          {(videos === []) && <li>not found</li>}
+          {videos.map((video) => {
+            return (
+              <Link
+                onClick={() => setEl("")}
+                to={{ pathname: `/video/${video.id}` }}
+              >
+                <li>{video.title}</li>{" "}
+              </Link>
+            );
+          })}
+        </ul>
+      )}
+    </Wrapper>
   );
 };
 
