@@ -9,6 +9,7 @@ import ChannelNav from "../components/ChannelNav";
 import Slider from "../components/Slider";
 import VideoCover from "../components/VideoCover";
 import HighlightedVideoCover from "../components/HighlightedVideoCover";
+import { API_URL } from "../lib/API_URI";
 
 const Layout = styled.div`
   max-width: calc(100vw - 200px);
@@ -36,7 +37,7 @@ const ChannelPage = () => {
   const [channelData, setChannelData] = useState(null);
 
   const fetchChannelByID = async (id) => {
-    axios.get(`http://localhost:1337/channels/${id}`).then(function (response) {
+    axios.get(`${API_URL}/channels/${id}`).then(function (response) {
       setChannelData(response.data);
     });
   };
@@ -60,9 +61,10 @@ const ChannelPage = () => {
   const indexOfHighLigthVideo = Math.floor(Math.random() * videos.length);
   const highLightVideo = videos[indexOfHighLigthVideo];
 
+
   return (
     <Layout>
-      <Banner src={`http://localhost:1337${banner.url}`} alt={name + 'youtube banner picture'} />
+      <Banner src={banner.url} alt={name + 'youtube banner picture'} />
       <Row>
         <UserAvatar
           url={profile_picture.url}

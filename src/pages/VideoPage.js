@@ -9,6 +9,7 @@ import { ThumbDown, ThumbUpAlt, Share } from "@material-ui/icons/";
 import ChannelInfo from "../components/ChannelInfo";
 import NextVideos from "../components/NextVideos";
 import Comments from "../components/Comments";
+import { API_URL } from "../lib/API_URI";
 
 const PageWrapper = styled.div`
   display: grid;
@@ -61,7 +62,7 @@ const VideoPage = () => {
 
   const fetchVideoByID = async (id) => {
     await axios
-      .get(`http://localhost:1337/videos/${id}`)
+      .get(`${API_URL}/videos/${id}`)
       .then(function (response) {
         setVideoData(response.data);
       });
@@ -79,15 +80,17 @@ const VideoPage = () => {
     author,
     videos,
     video,
+    cover,
     likes,
     comments,
   } = videoData;
+
 
   return (
     <div>
       <PageWrapper>
         <VideoPageContainer>
-          <VideoPlayer video={video} />
+          <VideoPlayer video={cover?.url} />
           <NameTitle>{title}</NameTitle>
           <VideoInfoWrapper>
             <Text>{views ? shortNumber(views) : 0} views</Text>

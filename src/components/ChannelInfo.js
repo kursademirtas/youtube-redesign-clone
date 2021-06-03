@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { API_URL } from "../lib/API_URI";
 import { Avatar, NameTitle } from "./Styles";
 import SubscribeButton from "./SubscribeButton";
 
@@ -33,7 +34,7 @@ const ChannelInfo = ({ author }) => {
       <Row>
       <Avatar
         size={"60px"}
-        src={`http://localhost:1337${profile_picture.url}`}
+        src={profile_picture.url}
       />
       <InfoBody>
         <NameTitle>{name}</NameTitle>

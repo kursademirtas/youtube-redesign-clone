@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../lib/API_URI";
 
 const HomeVideosContext = React.createContext();
 
@@ -24,7 +25,7 @@ export function HomeVideosProvider({ children }) {
   
   const fetchData = async () => {
     await axios
-      .get("http://localhost:1337/categories")
+      .get(`${API_URL}/categories`)
       .then(function (response) {
         setHomeVideos(response.data);
       });

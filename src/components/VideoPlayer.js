@@ -15,7 +15,7 @@ const VideoPlayer = ({ video }) => {
   const { url } = video;
 
   return (
-    <Player controls preload="none" poster={`http://localhost:1337${url}`}>
+    <Player controls preload="none" poster={video}>
       <source src="video.mp4" type="video/mp4"></source>
     </Player>
   );

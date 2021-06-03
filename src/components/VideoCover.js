@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import shortNumber from "short-number";
 import styled from "styled-components";
+import { API_URL } from "../lib/API_URI";
 import toHHMMSS from "../lib/toHHMMSS";
 import { Row } from "./Styles";
 
@@ -61,11 +62,12 @@ const VideoCover = ({ video, medium, large = false, withOutDescription }) => {
   const { duration, title, views, time, author, cover, description, id } = video;
 
   const convertedDuration =  toHHMMSS(duration);
+  
 
   return (
     <Link to={{ pathname: `/video/${id}` }}>
       <Cover coverHeight={coverHeight} coverWidth={coverWidth}>
-        <Photo src={`http://localhost:1337${cover.url}`} />
+        <Photo src={cover.url}/>
         <TimeLabel>{convertedDuration}</TimeLabel>
         {!withOutDescription && (
           <Row>

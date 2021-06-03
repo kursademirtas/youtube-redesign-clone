@@ -3,6 +3,7 @@ import { Search } from "@material-ui/icons/";
 import styled from "styled-components";
 import axios from "axios";
 import { Link, useLocation, useParams } from "react-router-dom";
+import { API_URL } from "../lib/API_URI";
 
 const Wrapper = styled.div`
   display: flex;
@@ -65,7 +66,7 @@ const SearchBar = () => {
   const [videos, setVideos] = useState([]);
 
   const fetchAllVideos = () => {
-    axios.get("http://localhost:1337/videos").then(function (response) {
+    axios.get(API_URL+'/videos').then(function (response) {
       setVideos(
         response.data.filter((video) => {
           return video.title.includes(el);

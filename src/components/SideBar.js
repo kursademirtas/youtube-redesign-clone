@@ -21,7 +21,7 @@ const SideBarContainer = styled.aside`
   }
 `;
 const BottomWrapper = styled.div`
-  margin-top: 4rem;
+  margin-top: .5rem;
   h3{
    padding:1rem;
   }
@@ -48,7 +48,7 @@ const SideBar = () => {
               <MenuItem
                 key={channel.id}
                 text={channel.name}
-                avatar={`http://localhost:1337${channel.profile_picture.url}`}
+                avatar={channel.profile_picture.url}
               />
             </Link>
           );

@@ -3,6 +3,7 @@ import Comment from "./Comment";
 import axios from "axios";
 import styled from "styled-components";
 import { Avatar } from "./Styles";
+import { API_URL } from "../lib/API_URI";
 
 const Form = styled.form`
   display: flex;
@@ -39,15 +40,16 @@ const Comments = ({ comments, id, fetchVideoByID }) => {
 
   const postComment = () => {
     axios
-      .post("http://localhost:1337/comments", {
+      .post(`${API_URL}/comments`, {
         text: commentText,
         likes: 0,
         dislikes: 0,
-        author: 2,
+        author: 1,
         video: parseInt(id),
       })
       .then((response) => {
         console.log(response);
+        fetchVideoByID(id);
       });
   };
 
@@ -55,7 +57,6 @@ const Comments = ({ comments, id, fetchVideoByID }) => {
     e.preventDefault();
     postComment();
     setCommentText("");
-    fetchVideoByID(id);
   }
 
  

@@ -4,6 +4,7 @@ import { Avatar } from "./Styles";
 import axios from "axios";
 import { ThumbDown, ThumbUpAlt } from "@material-ui/icons/";
 import Moment from "react-moment";
+import { API_URL } from "../lib/API_URI";
 
 const CommentContainer = styled.div`
   width: 90%;
@@ -50,7 +51,7 @@ const Comment = ({ comment }) => {
 
   const fetchCommentAuthor = async (id) => {
     await axios
-      .get(`http://localhost:1337/channels/${id}`)
+      .get(`${API_URL}/channels/${id}`)
       .then(function (response) {
         setAuthor(response.data);
       });
@@ -60,11 +61,12 @@ const Comment = ({ comment }) => {
     fetchCommentAuthor(comment.author);
   }, [comment]);
 
+  console.log(author);
   return (
     <CommentContainer>
       <Avatar
         size={"48px"}
-        src={`http://localhost:1337${author?.profile_picture?.url}`}
+      src={author?.profile_picture?.url}
       />
       <CommentBodyWrapper>
         <Row>

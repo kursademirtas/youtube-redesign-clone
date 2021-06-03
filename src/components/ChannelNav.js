@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import { channelMenuItems } from "../lib/menuItems";
 
-
 const Wrapper = styled.ul`
   display: flex;
   height: 50px;
   width: 100%;
-  padding:1rem;
+  padding: 1rem;
 `;
 const MenuItem = styled.li`
   list-style: none;

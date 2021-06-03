@@ -11,10 +11,11 @@ const Wrapper = styled.div`
 	}
 `
 
-const UserAvatar = ({url,name, subscribers, verified }) => {
+const UserAvatar = ({url, name, subscribers, verified }) => {
+
 	return (
 		<Wrapper>
-			<Avatar src={`http://localhost:1337${url}`} size='48px'/>
+			<Avatar src={url} size='48px'/>
 			<div className="">
 			<NameTitle>{name}</NameTitle>
 			<Text>{subscribers} Subscribers</Text>
