@@ -5,7 +5,7 @@ import { useLocation } from "react-router";
 import { useChannelData } from "../context/channelContext";
 import { menuItems } from '../lib/menuItems';
 import MenuItem from "./MenuItem";
-import { NameTitle } from "./Styles";
+
 
 const SideBarContainer = styled.aside`
 
@@ -16,6 +16,7 @@ const SideBarContainer = styled.aside`
   z-index: 10;
   background-color: white;
   top: 80px;
+
   @media only screen and (max-width: 1023px) {
     display: none;
   }

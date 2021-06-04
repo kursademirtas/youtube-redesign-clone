@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { VideoPreloader } from "./PreLoader";
 
 const Player = styled.video`
   width: 100%;
@@ -11,7 +12,7 @@ const Player = styled.video`
 `;
 
 const VideoPlayer = ({ video }) => {
-  if (!video) return <h2>Loading..</h2>;
+  if (!video) return <VideoPreloader width='900px' height='500px'/>;
   const { url } = video;
 
   return (

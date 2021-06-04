@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Search } from "@material-ui/icons/";
 import styled from "styled-components";
 import axios from "axios";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { API_URL } from "../lib/API_URI";
 
 const Wrapper = styled.div`
@@ -50,9 +50,8 @@ const SearchBarContainer = styled.div`
   }
 
   @media only screen and (max-width: 600px) {
-    position: absolute;
-    right: 60px;
-
+   
+    background: transparent;
     input {
       display: none;
     }
@@ -62,7 +61,7 @@ const SearchBarContainer = styled.div`
 const SearchBar = () => {
   const { pathname } = useLocation();
 
-  const [el, setEl] = useState(null);
+  const [el, setEl] = useState('');
   const [videos, setVideos] = useState([]);
 
   const fetchAllVideos = () => {
@@ -77,7 +76,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     fetchAllVideos();
-  }, [el]);
+  }, []);
 
   useEffect(() => {
     setEl("");

@@ -11,6 +11,7 @@ export const Avatar = styled.img`
   height: ${(props) => props.size};
   border-radius: ${(props) => props.size};
   background-color: orange;
+  
 `;
 
 export const NameTitle = styled.span`
@@ -27,10 +28,9 @@ export const Text = styled.p`
 `;
 export const Main = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   margin-top: 80px;
   overflow: hidden;
   position: relative;
+  
 `;

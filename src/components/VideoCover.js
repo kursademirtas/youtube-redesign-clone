@@ -4,6 +4,7 @@ import shortNumber from "short-number";
 import styled from "styled-components";
 import { API_URL } from "../lib/API_URI";
 import toHHMMSS from "../lib/toHHMMSS";
+import { VideoPreloader } from "./PreLoader";
 import { Row } from "./Styles";
 
 const Cover = styled.div`
@@ -57,12 +58,13 @@ const VideoCover = ({ video, medium, large = false, withOutDescription }) => {
   const coverWidth = large ? "540px" : medium ? "350px" : "200px";
   const coverHeight = large ? "300px" : medium ? "300px" : "200px";
 
-  if (!video) return <h2>Loading...</h2>;
+
+  if (!video) return <VideoPreloader width={coverWidth} height={coverHeight}/>;
 
   const { duration, title, views, time, author, cover, description, id } = video;
 
   const convertedDuration =  toHHMMSS(duration);
-  
+  console.log(!video);
 
   return (
     <Link to={{ pathname: `/video/${id}` }}>

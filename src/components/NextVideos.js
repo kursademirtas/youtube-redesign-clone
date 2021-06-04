@@ -10,32 +10,33 @@ const Container = styled.div`
   flex-direction: column;
   align-content: center;
   align-items: center;
-  margin:-1rem auto;
+  margin: -1rem auto;
 `;
 const VideosWrapper = styled.div`
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
 `;
 const Row = styled.div`
   width: 100%;
   max-width: 600px;
   display: flex;
   justify-content: space-between;
-  align-items:center;
-  padding:1rem 2rem;
+  align-items: center;
+  padding: 1rem 2rem;
 `;
 
 const Title = styled.h3`
-  text-align:center;
-  margin-left:20px;
-`
+  text-align: center;
+  margin-left: 20px;
+`;
 
 const NextVideos = ({ videos }) => {
   const [toggleOn, setToggleOn] = useState(false);
-  if (!videos) return <p>Loading...</p>;
+
 
   function handleToggle() {
     setToggleOn(!toggleOn);
@@ -60,9 +61,11 @@ const NextVideos = ({ videos }) => {
         )}
       </Row>
       <VideosWrapper>
-        {videos?.map((item) => {
-          return <VideoCover video={item} medium />;
-        })}
+        {
+          videos ?  videos?.map((item) => {
+            return <VideoCover video={item} medium />;
+          }) : <VideoCover medium/>
+        }
       </VideosWrapper>
     </Container>
   );

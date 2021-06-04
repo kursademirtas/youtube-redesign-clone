@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 const HighlightedVideoCover = ({ video }) => {
 
 	if(!video) return <h2>Loading...</h2>
-	const { duration, title, view, time, author, cover, description } = video;
+	const {  title, view, time,  description } = video;
 	return (
 		<Wrapper>
 			<VideoCover video={video} large withOutDescription/>

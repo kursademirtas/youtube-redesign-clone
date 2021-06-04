@@ -11,9 +11,6 @@ import Header from "./components/Header";
 import MobileMenu from "./components/MobileMenu";
 import { HomeVideosProvider } from "./context/homeVideoContext";
 
-
-require('dotenv').config()
-
 function App() {
   return (
     <div className="app">

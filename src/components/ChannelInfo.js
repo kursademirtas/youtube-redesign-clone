@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { API_URL } from "../lib/API_URI";
 import { Avatar, NameTitle } from "./Styles";
 import SubscribeButton from "./SubscribeButton";
 

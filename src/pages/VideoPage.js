@@ -16,6 +16,8 @@ const PageWrapper = styled.div`
   grid-template-columns: 3fr auto;
   padding: 1rem;
   margin: 0 auto;
+  align-self: center;
+ 
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
   }
@@ -26,6 +28,7 @@ const VideoPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 1000px;
+  
 `;
 
 const VideoInfoWrapper = styled.div`
@@ -87,7 +90,7 @@ const VideoPage = () => {
 
 
   return (
-    <div>
+  
       <PageWrapper>
         <VideoPageContainer>
           <VideoPlayer video={cover?.url} />
@@ -114,7 +117,7 @@ const VideoPage = () => {
         <NextVideos videos={videos} />
       </PageWrapper>
       
-    </div>
+    
   );
 };
 
